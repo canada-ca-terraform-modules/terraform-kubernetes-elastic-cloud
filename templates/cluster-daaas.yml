@@ -1,0 +1,94 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1alpha1
+kind: Elasticsearch
+metadata:
+  name: daaas
+  namespace: daaas
+spec:
+  version: 7.1.0
+  nodes:
+  - nodeCount: 1
+    config:
+      node.master: true
+      node.data: true
+      node.ingest: true
+    podTemplate:
+      metadata:
+        annotations:
+          sidecar.istio.io/inject: "false"
+      spec:
+        containers:
+        - name: elasticsearch
+          resources:
+            limits:
+              memory: 2Gi
+              cpu: 1
+    volumeClaimTemplates:
+      - metadata:
+          name: data
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          resources:
+            requests:
+              storage: 20Gi
+---
+apiVersion: kibana.k8s.elastic.co/v1alpha1
+kind: Kibana
+metadata:
+  name: daaas
+  namespace: daaas
+spec:
+  version: 7.1.0
+  nodeCount: 1
+  elasticsearchRef:
+    name: daaas
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: istio
+  name: daaas-kibana
+  namespace: daaas
+spec:
+  rules:
+  - host: daaas-kibana.innovation.cloud.statcan.ca
+    http:
+      paths:
+      - backend:
+          serviceName: daaas-kibana
+          servicePort: 5601
+        path: /*
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: istio
+  name: daaas-es
+  namespace: daaas
+spec:
+  rules:
+  - host: daaas-es.innovation.cloud.statcan.ca
+    http:
+      paths:
+      - backend:
+          serviceName: daaas-es
+          servicePort: 9200
+        path: /*
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: daaas-es
+  namespace: daaas
+spec:
+  host: daaas-es
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+    portLevelSettings:
+    - port:
+        number: 9200
+      tls:
+        mode: SIMPLE # initiates HTTPS
