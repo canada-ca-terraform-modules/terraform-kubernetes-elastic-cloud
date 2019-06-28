@@ -40,10 +40,10 @@ metadata:
 spec:
   version: 7.1.0
   nodeCount: 1
-  # podTemplate:
-  #   metadata:
-  #     annotations:
-  #       sidecar.istio.io/inject: "false"
+  podTemplate:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
   elasticsearchRef:
     name: vdl
 ---
@@ -97,18 +97,18 @@ spec:
       tls:
         mode: SIMPLE # initiates HTTPS
 ---
-# apiVersion: networking.istio.io/v1alpha3
-# kind: DestinationRule
-# metadata:
-#   name: vdl-kibana
-#   namespace: vdl
-# spec:
-#   host: vdl-kibana
-#   trafficPolicy:
-#     loadBalancer:
-#       simple: ROUND_ROBIN
-#     portLevelSettings:
-#     - port:
-#         number: 5601
-#       tls:
-#         mode: SIMPLE # initiates HTTPS
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: vdl-kibana
+  namespace: vdl
+spec:
+  host: vdl-kibana
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+    portLevelSettings:
+    - port:
+        number: 5601
+      tls:
+        mode: DISABLE

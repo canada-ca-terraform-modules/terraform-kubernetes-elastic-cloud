@@ -1,8 +1,8 @@
 apiVersion: elasticsearch.k8s.elastic.co/v1alpha1
 kind: Elasticsearch
 metadata:
-  name: daaas
-  namespace: daaas
+  name: adp
+  namespace: adp
 spec:
   version: 7.1.0
   nodes:
@@ -35,8 +35,8 @@ spec:
 apiVersion: kibana.k8s.elastic.co/v1alpha1
 kind: Kibana
 metadata:
-  name: daaas
-  namespace: daaas
+  name: adp
+  namespace: adp
 spec:
   version: 7.1.0
   nodeCount: 1
@@ -45,22 +45,22 @@ spec:
       annotations:
         sidecar.istio.io/inject: "false"
   elasticsearchRef:
-    name: daaas
+    name: adp
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: istio
-  name: daaas-kibana
-  namespace: daaas
+  name: adp-kibana
+  namespace: adp
 spec:
   rules:
-  - host: daaas-kibana.innovation.cloud.statcan.ca
+  - host: adp-kibana.innovation.cloud.statcan.ca
     http:
       paths:
       - backend:
-          serviceName: daaas-kibana
+          serviceName: adp-kibana
           servicePort: 5601
         path: /*
 ---
@@ -69,25 +69,25 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: istio
-  name: daaas-es
-  namespace: daaas
+  name: adp-es
+  namespace: adp
 spec:
   rules:
-  - host: daaas-es.innovation.cloud.statcan.ca
+  - host: adp-es.innovation.cloud.statcan.ca
     http:
       paths:
       - backend:
-          serviceName: daaas-es
+          serviceName: adp-es
           servicePort: 9200
         path: /*
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: daaas-es
-  namespace: daaas
+  name: adp-es
+  namespace: adp
 spec:
-  host: daaas-es
+  host: adp-es
   trafficPolicy:
     loadBalancer:
       simple: ROUND_ROBIN
@@ -100,10 +100,10 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: daaas-kibana
-  namespace: daaas
+  name: adp-kibana
+  namespace: adp
 spec:
-  host: daaas-kibana
+  host: adp-kibana
   trafficPolicy:
     loadBalancer:
       simple: ROUND_ROBIN
