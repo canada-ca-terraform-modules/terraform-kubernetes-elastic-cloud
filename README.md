@@ -1,8 +1,8 @@
-# Terraform Kubernetes AAD Pod Identity
+# Terraform Kubernetes Elastic Cloud
 
 ## Introduction
 
-This module deploys and configures Elastic Cloud on Kubernetes into a Kubernetes Cluster.
+This module deploys and configures Elastic Cloud inside a Kubernetes Cluster.
 
 ## Security Controls
 
