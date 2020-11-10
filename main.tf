@@ -7,7 +7,7 @@
 # module:
 resource "null_resource" "dependency_getter" {
   triggers = {
-    my_dependencies = "${join(",", var.dependencies)}"
+    my_dependencies = join(",", var.dependencies)
   }
 
   lifecycle {
@@ -27,7 +27,7 @@ resource "null_resource" "eck_init" {
   }
 
   depends_on = [
-    "null_resource.dependency_getter",
+    null_resource.dependency_getter,
   ]
 }
 
@@ -38,6 +38,6 @@ resource "null_resource" "dependency_setter" {
   # https://github.com/hashicorp/terraform/issues/1178#issuecomment-449158607
   # List resource(s) that will be constructed last within the module.
   depends_on = [
-    "null_resource.eck_init",
+    null_resource.eck_init,
   ]
 }
