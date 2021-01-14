@@ -25,11 +25,11 @@ module "kubectl_eck" {
   source = "github.com/canada-ca-terraform-modules/terraform-kubernetes-aad-pod-identity?ref=20190909.1"
 
   dependencies = [
-    "${module.namespace_elastic_system.depended_on}",
+    module.namespace_elastic_system.depended_on,
   ]
 
-  kubectl_service_account = "${module.namespace_elastic_system.helm_service_account}"
-  kubectl_namespace = "${module.namespace_elastic_system.name}"
+  kubectl_service_account = module.namespace_elastic_system.helm_service_account
+  kubectl_namespace       = module.namespace_elastic_system.name
 }
 ```
 
