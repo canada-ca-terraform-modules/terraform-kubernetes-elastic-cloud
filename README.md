@@ -49,3 +49,4 @@ module "kubectl_eck" {
 | 20200729 | v1.0.2     | Update Operator to 1.2.0 manifest                             |
 | 20201110 | v1.0.3     | Update Operator to 1.2.1 manifest                             |
 | 20210825 | v2.0.0     | Update module for Terraform 0.13 and remove uneeded variables |
+| 20211207 | v2.1.0     | Update Operator to 1.8.0 manifest                             |
