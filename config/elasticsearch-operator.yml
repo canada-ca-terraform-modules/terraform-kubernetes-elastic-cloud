@@ -8,7 +8,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
-    app.kubernetes.io/version: '1.9.0'
+    app.kubernetes.io/version: '2.2.0'
   name: agents.agent.k8s.elastic.co
 spec:
   group: agent.k8s.elastic.co
@@ -462,7 +462,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
-    app.kubernetes.io/version: '1.9.0'
+    app.kubernetes.io/version: '2.2.0'
   name: apmservers.apm.k8s.elastic.co
 spec:
   group: apm.k8s.elastic.co
@@ -1132,7 +1132,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
-    app.kubernetes.io/version: '1.9.0'
+    app.kubernetes.io/version: '2.2.0'
   name: beats.beat.k8s.elastic.co
 spec:
   group: beat.k8s.elastic.co
@@ -1380,7 +1380,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
-    app.kubernetes.io/version: '1.9.0'
+    app.kubernetes.io/version: '2.2.0'
   name: elasticmapsservers.maps.k8s.elastic.co
 spec:
   group: maps.k8s.elastic.co
@@ -1704,7 +1704,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
-    app.kubernetes.io/version: '1.9.0'
+    app.kubernetes.io/version: '2.2.0'
   name: elasticsearches.elasticsearch.k8s.elastic.co
 spec:
   group: elasticsearch.k8s.elastic.co
@@ -3142,7 +3142,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
-    app.kubernetes.io/version: '1.9.0'
+    app.kubernetes.io/version: '2.2.0'
   name: enterprisesearches.enterprisesearch.k8s.elastic.co
 spec:
   group: enterprisesearch.k8s.elastic.co
@@ -3756,7 +3756,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: 'elastic-operator'
     app.kubernetes.io/name: 'eck-operator-crds'
-    app.kubernetes.io/version: '1.9.0'
+    app.kubernetes.io/version: '2.2.0'
   name: kibanas.kibana.k8s.elastic.co
 spec:
   group: kibana.k8s.elastic.co
@@ -4477,7 +4477,7 @@ metadata:
   namespace: elastic-system
   labels:
     control-plane: elastic-operator
-    app.kubernetes.io/version: "1.9.0"
+    app.kubernetes.io/version: "2.2.0"
 ---
 # Source: eck-operator/templates/webhook.yaml
 apiVersion: v1
@@ -4487,7 +4487,7 @@ metadata:
   namespace: elastic-system
   labels:
     control-plane: elastic-operator
-    app.kubernetes.io/version: "1.9.0"
+    app.kubernetes.io/version: "2.2.0"
 ---
 # Source: eck-operator/templates/configmap.yaml
 apiVersion: v1
@@ -4497,7 +4497,7 @@ metadata:
   namespace: elastic-system
   labels:
     control-plane: elastic-operator
-    app.kubernetes.io/version: "1.9.0"
+    app.kubernetes.io/version: "2.2.0"
 data:
   eck.yaml: |-
     log-verbosity: 0
@@ -4524,7 +4524,7 @@ metadata:
   name: elastic-operator
   labels:
     control-plane: elastic-operator
-    app.kubernetes.io/version: "1.9.0"
+    app.kubernetes.io/version: "2.2.0"
 rules:
   - apiGroups:
       - "authorization.k8s.io"
@@ -4705,7 +4705,7 @@ metadata:
     rbac.authorization.k8s.io/aggregate-to-edit: "true"
     rbac.authorization.k8s.io/aggregate-to-admin: "true"
     control-plane: elastic-operator
-    app.kubernetes.io/version: "1.9.0"
+    app.kubernetes.io/version: "2.2.0"
 rules:
   - apiGroups: ["elasticsearch.k8s.elastic.co"]
     resources: ["elasticsearches"]
@@ -4738,7 +4738,7 @@ metadata:
     rbac.authorization.k8s.io/aggregate-to-edit: "true"
     rbac.authorization.k8s.io/aggregate-to-admin: "true"
     control-plane: elastic-operator
-    app.kubernetes.io/version: "1.9.0"
+    app.kubernetes.io/version: "2.2.0"
 rules:
   - apiGroups: ["elasticsearch.k8s.elastic.co"]
     resources: ["elasticsearches"]
@@ -4769,7 +4769,7 @@ metadata:
   name: elastic-operator
   labels:
     control-plane: elastic-operator
-    app.kubernetes.io/version: "1.9.0"
+    app.kubernetes.io/version: "2.2.0"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -4787,7 +4787,7 @@ metadata:
   namespace: elastic-system
   labels:
     control-plane: elastic-operator
-    app.kubernetes.io/version: "1.9.0"
+    app.kubernetes.io/version: "2.2.0"
 spec:
   ports:
     - name: https
@@ -4804,7 +4804,7 @@ metadata:
   namespace: elastic-system
   labels:
     control-plane: elastic-operator
-    app.kubernetes.io/version: "1.9.0"
+    app.kubernetes.io/version: "2.2.0"
 spec:
   selector:
     matchLabels:
@@ -4826,7 +4826,7 @@ spec:
       securityContext:
         runAsNonRoot: true
       containers:
-        - image: "docker.elastic.co/eck/eck-operator:1.9.0"
+        - image: "docker.elastic.co/eck/eck-operator:2.2.0"
           imagePullPolicy: IfNotPresent
           name: manager
           args:
@@ -4877,7 +4877,7 @@ metadata:
   name: elastic-webhook.k8s.elastic.co
   labels:
     control-plane: elastic-operator
-    app.kubernetes.io/version: "1.9.0"
+    app.kubernetes.io/version: "2.2.0"
 webhooks:
   - clientConfig:
       caBundle: Cg==
