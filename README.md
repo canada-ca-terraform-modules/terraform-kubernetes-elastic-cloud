@@ -22,7 +22,7 @@ The following security controls can be met through configuration of this templat
 
 ```terraform
 module "kubectl_eck" {
-  source = "github.com/canada-ca-terraform-modules/terraform-kubernetes-elastic-cloud?ref=v2.3.0"
+  source = "github.com/canada-ca-terraform-modules/terraform-kubernetes-elastic-cloud?ref=v2.4.0"
 
   depends_on = [
     module.namespace_elastic_system,
@@ -68,4 +68,5 @@ Ref: https://www.elastic.co/guide/en/cloud-on-k8s/current/release-highlights-1.7
 | 20210825 | v2.0.0     | Update module for Terraform 0.13 and remove uneeded variables |
 | 20211207 | v2.1.0     | Update Operator to 1.8.0 manifest                             |
 | 20211209 | v2.2.0     | Update Operator to 1.9.0 manifest                             |
-| 20211209 | v2.2.0     | Update Operator to 2.2.0 manifest                             |
+| 20211209 | v2.3.0     | Update Operator to 2.2.0 manifest                             |
+| 20220816 | v2.4.0     | Update Operator to 2.3.0 manifest                             |
