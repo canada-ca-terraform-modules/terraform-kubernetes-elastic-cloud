@@ -4586,6 +4586,7 @@ spec:
         type: object
     served: false
     storage: false
+---
 # Source: eck-operator/templates/operator-namespace.yaml
 apiVersion: v1
 kind: Namespace
